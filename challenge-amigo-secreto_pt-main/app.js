@@ -10,12 +10,12 @@ function adicionarAmigo() {
         alert('Por favor, insira um nome.');
         return false;
     } else {
-        limparLista();
-        listaAmigos.push(nomeDoAmigo); 
+        limparLista(); 
+        amigos.push(nomeDoAmigo); 
         let listaExibida = document.getElementById('listaAmigos');
-        for (i = 0; i < listaAmigos.length; ++i) {
+        for (i = 0; i < amigos.length; ++i) {
             let li = document.createElement('li');
-            li.innerText = listaAmigos[i];
+            li.innerText = amigos[i];
             listaExibida.appendChild(li);
         }
     }
@@ -23,16 +23,16 @@ function adicionarAmigo() {
     }
 
 function sortearAmigo() {
-    if (listaAmigos == '') {
+    if (amigos.length == 0) {
         alert('Por favor, insira um nome.');
     } else {
-        if (listaAmigos.length < 3) {
+        if (amigos.length < 3) {
             alert('É necessário pelo menos 3 amigos para o sorteio.');
             return;
         }
         else{
-        let amigoSecreto = listaAmigos[Math.floor(Math.random() * listaAmigos.length)];
-        listaAmigos = listaAmigos.filter(item => item !== amigoSecreto);
+        let amigoSecreto = amigos[Math.floor(Math.random() * amigos.length)];
+        amigos = amigos.filter(item => item !== amigoSecreto);
         resultado.innerHTML = `O amigo sorteado é: ${amigoSecreto}!`;
         limparLista();
         botaoReiniciar.removeAttribute('hidden');
@@ -43,7 +43,7 @@ function sortearAmigo() {
 
 function novoJogo() {
     document.getElementById('reiniciar');
-    listaAmigos = [];
+    amigos = [];
     resultado.innerHTML = '';
     botaoReiniciar.setAttribute('hidden', 'hidden');
     botaoSortear.removeAttribute('hidden');
